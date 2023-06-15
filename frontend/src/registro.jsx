@@ -1,30 +1,47 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles/Register.css";
+import "./styles/styles.css";
 
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
-  const [token, setToken] = useState("");
+  const [exito, setExito] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
     const csrfToken = 'my_csrf_token';
     axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
 
-    axios
+    await axios
       .post("http://localhost:8000/users/register", { username, email, password, confirmation })
       .then((response) => {
         console.log(response.data);
-        //redirigir a la página de inicio de sesión
+        if (response.data.message === "Registration successful") {
+          setExito("Te has registrado exitosamente");
+          localStorage.setItem('isLogged', 'true');
+          setTimeout(() => {
+            navigate("/facturacion");
+          }, 2200);
+        } else {
+          console.log(response.data.message);
+          setError(response.data.message);
+          localStorage.setItem('isLogged', 'false');
+        }
       })
       .catch((error) => {
         console.log(error.response.data);
       });
+  };
+
+  const closeError = () => {
+    setError("");
   };
 
   return (
@@ -32,6 +49,15 @@ function Register() {
       <div className="registerContainer">
         <div className="containerForm">
           <h2>Registro de usuario</h2>
+          {error && (
+              <div className="error-alert">
+                {error}
+                <button className="close-btn" onClick={closeError}>
+                  Cerrar
+                </button>
+              </div>
+            )}
+          {exito && (<div className="success-alert alert alert-success text-center"> {exito} </div>)}
           <form onSubmit={handleRegister}>
             <div className="mb-3">
               <label htmlFor="username" className="form-label">

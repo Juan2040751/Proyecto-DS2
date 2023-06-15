@@ -5,13 +5,21 @@ import Container from "@mui/material/Container";
 import Slide from "@mui/material/Slide";
 import Toolbar from "@mui/material/Toolbar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
+import { useNavigate } from "react-router-dom";
 import React from "react";
+
 function NavbarApp({ window }) {
-  const pages = ["Productos", "Pricing", "Blog"];
+  const pages = ["Productos", "Pricing", "Blog", "Logout"];
+  const navigate = useNavigate();
 
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
   });
+
+  const handleLogout = () => {
+    localStorage.setItem("isLogged", "false");
+    navigate('/');
+  };
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>
@@ -60,6 +68,7 @@ function NavbarApp({ window }) {
               {pages.map((page) => (
                 <Button
                   key={page}
+                  onClick={page === "Logout" ? handleLogout : null}
                   sx={{
                     my: 2,
                     color: "black",
