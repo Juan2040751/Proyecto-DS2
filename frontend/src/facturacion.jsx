@@ -81,7 +81,7 @@ function Facturacion() {
       url: "http://127.0.0.1:8000/invoices/",
       data: {
         productos: products.map((prod) => {
-          const { id, quantity, weight, manufacturer, name, price } = prod;
+          const { id, quantity} = prod;
           return { producto: id, cantidad: quantity };
         }),
         cliente: cliente.id,
