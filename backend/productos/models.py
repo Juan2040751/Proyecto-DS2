@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 
-class Products(models.Model):
+class Producto(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     price = models.IntegerField()
@@ -12,4 +12,9 @@ class Products(models.Model):
     category = models.TextField(blank=True)
     numberUnits = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.title
+
     
+    def __str__(self):
+        return f"{self.name}"

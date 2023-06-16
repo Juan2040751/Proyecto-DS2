@@ -1,10 +1,12 @@
 import { React, useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import App from "./app";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import App from "./app";
+import Facturacion from "./facturacion"
+import Login from "./login";
 import Productos from "./productos";
 import Register from "./registro";
-import Login from "./login";
+import ListaProductos from "./components/list_products"
 
 const CheckAuthentication = ({ children }) => {
   const navigate = useNavigate();
@@ -35,13 +37,42 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             </div>
         }/>
       <Route
-      
         path="/productos"
         element={
           <CheckAuthentication>
             <App>
               <Productos />
             </App>
+          </CheckAuthentication>
+        }
+      />
+      <Route
+        path="/facturacion"
+        element={
+          <CheckAuthentication>
+            <App>
+              <Facturacion />
+            </App>
+          </CheckAuthentication>
+        }
+      />
+      <Route
+        path="/lista-productos"
+        element={
+          <CheckAuthentication>
+            <App>
+              <ListaProductos />
+          </App>
+          </CheckAuthentication>
+        }
+      />
+      <Route
+        path="/productos/:id"
+        element={
+          <CheckAuthentication>
+            <App>
+              <Productos />
+          </App>
           </CheckAuthentication>
         }
       />

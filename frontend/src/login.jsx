@@ -1,6 +1,6 @@
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/styles.css";
 
@@ -10,22 +10,25 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
     const csrfToken = 'my_csrf_token';
     axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
-
+    localStorage.clear();
     await axios
       .post("http://localhost:8000/users/login", { username, password })
       .then((response) => {
         console.log(response.data);
         if (response.data.message === "Login successful") {
-          //localStorage.setItem('token', response.data.token) PENDIENTEEE
           localStorage.setItem('isLogged', 'true');
           localStorage.setItem('id', response.data.id);
           localStorage.setItem('username', response.data.username);
-          navigate("/productos")
+          navigate("/facturacion")
         } else {
           setError("Acceso inválido. Por favor, inténtelo otra vez.");
           localStorage.setItem('isLogged', 'false');

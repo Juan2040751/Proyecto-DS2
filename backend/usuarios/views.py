@@ -36,33 +36,19 @@ def register(request):
             return JsonResponse({"message": "Username already taken."})
 
         login(request, user)
-        return JsonResponse({"message": "Registration successful"})
+        #Generar el token con información básica del usuario
+        token_payload = {
+            'user_id': user.id,
+            'username': user.username,
+            'exp': datetime.utcnow() + timedelta(minutes=30)
+        }
+        token = jwt.encode(token_payload, 'tu_secreto', algorithm='HS256')
+        
+        return JsonResponse({"message": "Registration successful", "token": token, "id": user.id, "username": user.username})
     else:
         return JsonResponse({"message": "Only POST requests are allowed"}, status=405)
     
-'''
-def login_view(request):
-    if request.method == "POST":
-        try:
-            data = json.loads(request.body)
-            username = data["username"]
-            password = data["password"]
 
-            print(username, password)
-        except KeyError:
-            return JsonResponse({"message": "Invalid JSON data."})
-
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return JsonResponse({"message": "Login successful"})
-        else:
-            return JsonResponse({"message": "Invalid username and/or password."})
-
-    else:
-        return JsonResponse({"message": "Only POST requests are allowed"}, status=405)
-'''
 @csrf_exempt
 def login_view(request):
     if request.method == "POST":
@@ -95,7 +81,7 @@ def login_view(request):
         return JsonResponse({"message": "Only POST requests are allowed"}, status=405)
 
 
-
+@csrf_exempt
 def get_all_users(request):
     users = User.objects.all().values()
     return JsonResponse(list(users), safe=False)

@@ -5,20 +5,19 @@ import Container from "@mui/material/Container";
 import Slide from "@mui/material/Slide";
 import Toolbar from "@mui/material/Toolbar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
-import { useNavigate } from "react-router-dom";
 import React from "react";
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import { NavLink } from "react-router-dom";
 
 function NavbarApp({ window }) {
-  const pages = ["Productos", "Pricing", "Blog", "Logout"];
-  const navigate = useNavigate();
+  const pages = ["Facturacion", "Productos", "Logout"];
 
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
   });
 
   const handleLogout = () => {
-    localStorage.setItem("isLogged", "false");
-    navigate('/');
+    localStorage.clear();
   };
 
   return (
@@ -33,9 +32,9 @@ function NavbarApp({ window }) {
                 marginLeft: "2%",
               }}
             >
-              <AdbIcon
+              <ReceiptIcon
                 sx={{
-                  display: { xs: "none", md: "flex" },
+                  display: { xs: "none", md: "flex", color: "#00AB55" },
                   mr: 1,
                   fontSize: 40,
                 }}
@@ -44,7 +43,6 @@ function NavbarApp({ window }) {
                 variant="h4"
                 noWrap
                 component="a"
-                href="/"
                 sx={{
                   mr: 2,
                   display: { xs: "flex", md: "flex" },
@@ -54,7 +52,7 @@ function NavbarApp({ window }) {
                   textDecoration: "none",
                 }}
               >
-                LOGO
+                Turbo
               </Typography>
             </Box>
 
@@ -66,19 +64,25 @@ function NavbarApp({ window }) {
               }}
             >
               {pages.map((page) => (
-                <Button
+                <NavLink
                   key={page}
-                  onClick={page === "Logout" ? handleLogout : null}
-                  sx={{
-                    my: 2,
-                    color: "black",
-                    display: "block",
-                    fontSize: 18,
-                    fontWeight: "medium",
+                  to={ page === "Logout" ? "/" : "/" + page.toLowerCase()}
+                  style={({ isActive, isPending }) => {
+                    return {
+                      textDecoration: "none",
+                      padding: "1%",
+                      color: isActive? "white":"black",
+                      display: "flex",
+                      fontSize: 18,
+                      fontWeight: "medium",
+                      backgroundColor: isActive? "#00AB55":"transparent",
+                      borderRadius: 7,
+                    };
                   }}
+                  onClick={page === "Logout" ? handleLogout : undefined}
                 >
                   {page}
-                </Button>
+                </NavLink>
               ))}
             </Box>
           </Toolbar>

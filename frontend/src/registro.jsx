@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,12 +13,16 @@ function Register() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
   const handleRegister = async (e) => {
     e.preventDefault();
 
     const csrfToken = 'my_csrf_token';
     axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
-
+    
     await axios
       .post("http://localhost:8000/users/register", { username, email, password, confirmation })
       .then((response) => {
@@ -26,6 +30,8 @@ function Register() {
         if (response.data.message === "Registration successful") {
           setExito("Te has registrado exitosamente");
           localStorage.setItem('isLogged', 'true');
+          localStorage.setItem('id', response.data.id);
+          localStorage.setItem('username', response.data.username);
           setTimeout(() => {
             navigate("/facturacion");
           }, 2200);

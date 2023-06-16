@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+    <file path="D:\Juan Jose Viafara\I\Universidad\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\tests\navbar.test.js">
+        <testCase name="pruebas interfaz de navbar Titulo de la pagina presente" duration="112"/>
+    </file>
+    <file path="D:\Juan Jose Viafara\I\Universidad\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\tests\facturacion.test.js">
+        <testCase name="pruebas interfaz de facturacion Titulo de la pagina presente" duration="205"/>
+        <testCase name="pruebas interfaz de facturacion Informacion del vendendor y cliente presente" duration="89"/>
+        <testCase name="pruebas interfaz de facturacion Boton para añadir productos funciona" duration="155"/>
+    </file>
+    <file path="D:\Juan Jose Viafara\I\Universidad\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\tests\productos.test.js">
+        <testCase name="pruebas interfaz de productos Titulo de la pagina presente" duration="75"/>
+        <testCase name="pruebas interfaz de productos Boton para añadir productos presente" duration="70"/>
+        <testCase name="pruebas interfaz de productos Boton para añadir productos funciona" duration="144"/>
+        <testCase name="pruebas interfaz de productos Formulario para añadir productos presente" duration="79"/>
+        <testCase name="pruebas interfaz de productos Boton para añadir un producto funciona" duration="375"/>
+        <testCase name="pruebas interfaz de productos Se puede editar el fabricante de un producto" duration="151"/>
+    </file>
+</testExecutions>

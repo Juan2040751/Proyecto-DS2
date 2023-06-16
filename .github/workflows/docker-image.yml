@@ -3,20 +3,68 @@ name: App
 on:
   push:
     branches:
-      - pruebas
       - main
-
+      - PDS2-8-Crear-factura
 jobs:
   test:
     runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
+    services:
+      # Label used to access the service container
+      postgres:
+        image: postgres:15-alpine
+        # Provide the password for postgres
+        env:
+          POSTGRES_USER: "postgres"
+          POSTGRES_PASSWORD: "postgres"
+          POSTGRES_DB: "turbo_db"
+
+        ports:
+          - 5432:5432
+
+        options: --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+     
+      - name: Clean Docker container
+        run: docker stop $(docker ps -a -q)
+        
+      - name: Run container App
+        run: docker compose up -d
+      
+      - name: Run tests
+        run: cd frontend && npm install --no-bin-links && npm install -g jest && npm run coverage && npm run sonar
+  sonarcloud:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
       with:
-        folder: ./frontend
-        node-version: 18
-    - name: Create container
-      run: docker build -t frontend frontend
+        projectBaseDir: ./frontend/src
+        args: >
+          -Dsonar.organization=my-organization
+          -Dsonar.projectKey=my-projectkey
+          -Dsonar.python.coverage.reportPaths=coverage.xml
+          -Dsonar.sources=./frontend/src
+          -Dsonar.test.exclusions=tests/**
+          -Dsonar.tests=tests/
+          -Dsonar.verbose=true
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+
+
+
+      
