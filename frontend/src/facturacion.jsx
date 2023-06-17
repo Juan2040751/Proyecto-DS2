@@ -95,7 +95,7 @@ function Facturacion() {
       if (newProduct.id === "") return true;
       await axios({
         method: "get",
-        url: "http://127.0.0.1:8000/products/" + newProduct.id + "/",
+        url: "https://tienda-service.onrender.com/products/" + newProduct.id + "/",
       })
         .then(({ data }) => {
           const { name, price, manufacturer, weight } = data;

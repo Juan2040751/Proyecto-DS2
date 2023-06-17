@@ -28,7 +28,7 @@ describe('Pruebas interfaz Login', () => {
   test('Login hace la solicitud POST correctamente', async () => {
 
 
-    axiosMock.onPost('http://localhost:8000/users/login', { username: 'Juan Jose', password: '1234' }).reply(200, {
+    axiosMock.onPost('https://tienda-service.onrender.com/users/login', { username: 'Juan Jose', password: '1234' }).reply(200, {
       message: 'Login successful',
       id: '1',
       username: 'Juan Jose',
@@ -44,7 +44,7 @@ describe('Pruebas interfaz Login', () => {
 
     await waitFor(() => {
       expect(axiosMock.history.post.length).toBe(1);
-      expect(axiosMock.history.post[0].url).toBe('http://localhost:8000/users/login');
+      expect(axiosMock.history.post[0].url).toBe('https://tienda-service.onrender.com/users/login');
       expect(JSON.parse(axiosMock.history.post[0].data)).toEqual({ username: 'Juan Jose', password: '1234' });
     });
   });

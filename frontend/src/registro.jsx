@@ -17,7 +17,7 @@ function Register() {
     axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
 
     axios
-      .post("http://localhost:8000/users/register", { username, email, password, confirmation })
+      .post("https://tienda-service.onrender.com/users/register", { username, email, password, confirmation })
       .then(() => {
         navigate("/facturacion");
       })
