@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1686962861654" clover="3.2.0">
-  <project timestamp="1686962861655" name="All files">
-    <metrics statements="111" coveredstatements="95" conditionals="34" coveredconditionals="20" methods="50" coveredmethods="45" elements="195" coveredelements="160" complexity="0" loc="111" ncloc="111" packages="2" files="6" classes="6"/>
+<coverage generated="1687029586492" clover="3.2.0">
+  <project timestamp="1687029586492" name="All files">
+    <metrics statements="111" coveredstatements="98" conditionals="34" coveredconditionals="20" methods="50" coveredmethods="46" elements="195" coveredelements="164" complexity="0" loc="111" ncloc="111" packages="2" files="6" classes="6"/>
     <package name="src">
-      <metrics statements="91" coveredstatements="77" conditionals="26" coveredconditionals="16" methods="40" coveredmethods="35"/>
+      <metrics statements="91" coveredstatements="80" conditionals="26" coveredconditionals="16" methods="40" coveredmethods="36"/>
       <file name="facturacion.jsx" path="C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\src\facturacion.jsx">
         <metrics statements="37" coveredstatements="32" conditionals="14" coveredconditionals="10" methods="17" coveredmethods="15"/>
         <line num="14" count="34" type="stmt"/>
@@ -65,7 +65,7 @@
         <line num="59" count="1" type="stmt"/>
       </file>
       <file name="productos.jsx" path="C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\src\productos.jsx">
-        <metrics statements="37" coveredstatements="28" conditionals="12" coveredconditionals="6" methods="17" coveredmethods="14"/>
+        <metrics statements="37" coveredstatements="31" conditionals="12" coveredconditionals="6" methods="17" coveredmethods="15"/>
         <line num="23" count="19" type="stmt"/>
         <line num="32" count="19" type="stmt"/>
         <line num="36" count="19" type="stmt"/>
@@ -76,9 +76,9 @@
         <line num="43" count="0" type="stmt"/>
         <line num="44" count="0" type="stmt"/>
         <line num="46" count="2" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="62" count="0" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
         <line num="65" count="1" type="stmt"/>
         <line num="66" count="1" type="stmt"/>
         <line num="71" count="19" type="stmt"/>
