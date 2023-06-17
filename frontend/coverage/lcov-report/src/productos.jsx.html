@@ -37,9 +37,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.88% </span>
+                <span class="strong">88.23% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>16/18</span>
+                <span class='fraction'>15/17</span>
             </div>
         
             
@@ -446,7 +446,10 @@
 <a name='L381'></a><a href='#L381'>381</a>
 <a name='L382'></a><a href='#L382'>382</a>
 <a name='L383'></a><a href='#L383'>383</a>
-<a name='L384'></a><a href='#L384'>384</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L384'></a><a href='#L384'>384</a>
+<a name='L385'></a><a href='#L385'>385</a>
+<a name='L386'></a><a href='#L386'>386</a>
+<a name='L387'></a><a href='#L387'>387</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -486,7 +489,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -498,6 +501,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -511,7 +515,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -531,6 +534,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -867,36 +873,36 @@ export function NuevoProducto({ open, setOpen, handleOpen }) {
   const params = useParams();
   const navigate = useNavigate();
 &nbsp;
-  const submitHandler = (e) =&gt; {
+  const submitHandler = async (e) =&gt; {
     e.preventDefault();
-    (async () =&gt; {
-      <span class="missing-if-branch" title="if path not taken" >I</span>if (params.id) {
-<span class="cstat-no" title="statement not covered" >        await updateProduct(params.id, producto);</span>
-<span class="cstat-no" title="statement not covered" >        navigate("/lista-productos/");</span>
-      } else {
-        await axios({
-          method: "post",
-          url: "http://127.0.0.1:8000/products/",
-          data: producto,
-        })
-          .then(async function (responseUser) {
-            setProducto({
-              name: "",
-              description: "",
-              price: 0,
-              manufacturer: "",
-              weight: "",
-              category: "",
-              numberUnits: "",
-            });
-            setMessage({ ...message, state: true });
-          })
-          .catch(function (error) {
-            setMessage({ state: true, message: "error!" });
-            console.log(error);
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (params.id) {
+<span class="cstat-no" title="statement not covered" >      await updateProduct(params.id, producto);</span>
+<span class="cstat-no" title="statement not covered" >      navigate("/lista-productos/")</span>
+    } else {
+      await axios({
+        method: "post",
+        url: "https://tienda-service.onrender.com/products/",
+        data: producto,
+      })
+        .then(async function (responseUser) {
+          console.log(responseUser.data);
+          setProducto({
+            name: "",
+            description: "",
+            price: 0,
+            manufacturer: "",
+            weight: "",
+            category: "",
+            numberUnits: "",
           });
-      }
-    })();
+          setMessage({ ...message, state: true });
+        })
+        .catch(function (error) {
+          setMessage({ state: true, message: "error!" });
+          console.log(error);
+        });
+    }
   };
 &nbsp;
   useEffect(() =&gt; {
@@ -915,46 +921,46 @@ export function NuevoProducto({ open, setOpen, handleOpen }) {
 &nbsp;
   return (
     &lt;&gt;
-      &lt;Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleOpen}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-        slotProps={{
-          backdrop: {
-            timeout: 500,
-          },
-        }}
-      &gt;
-        &lt;Fade in={open}&gt;
-          &lt;Box
-            sx={{
-              position: "absolute",
-              minWidth: 400,
-              maxWidth: "50%",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              bgcolor: "transparent",
-            }}
-          &gt;
-            &lt;Card
+        &lt;Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={open}
+          onClose={handleOpen}
+          closeAfterTransition
+          slots={{ backdrop: Backdrop }}
+          slotProps={{
+            backdrop: {
+              timeout: 500,
+            },
+          }}
+        &gt;
+          &lt;Fade in={open}&gt;
+            &lt;Box
               sx={{
-                padding: 4,
-                width: "100%",
-                borderRadius: 4,
+                position: "absolute",
+                minWidth: 400,
+                maxWidth: "50%",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                bgcolor: "transparent",
               }}
             &gt;
-              &lt;Box
+              &lt;Card
                 sx={{
-                  flexGrow: 1,
-                  display: { xs: "flex", md: "flex" },
-                  justifyContent: "space-between",
-                  paddingRight: "3%",
+                  padding: 4,
+                  width: "100%",
+                  borderRadius: 4,
                 }}
               &gt;
+                &lt;Box
+                  sx={{
+                    flexGrow: 1,
+                    display: { xs: "flex", md: "flex" },
+                    justifyContent: "space-between",
+                    paddingRight: "3%",
+                  }}
+                &gt;
                 {params.id ? (
 <span class="branch-0 cbranch-no" title="branch not covered" >                  &lt;Typography</span>
                     variant="h4"
@@ -975,22 +981,22 @@ export function NuevoProducto({ open, setOpen, handleOpen }) {
                   &lt;/Typography&gt;
                 ) : (
                   &lt;Typography
-                    variant="h4"
-                    noWrap
-                    component="a"
-                    href="#"
-                    sx={{
-                      mr: 0,
-                      display: { xs: "flex", md: "flex" },
-                      fontFamily: "sans-serif",
-                      fontWeight: 700,
-                      fontSize: 25,
-                      color: "black",
-                      textDecoration: "none",
-                    }}
-                  &gt;
-                    Nuevo Producto
-                  &lt;/Typography&gt;
+                        variant="h4"
+                        noWrap
+                        component="a"
+                        href="#"
+                        sx={{
+                          mr: 0,
+                          display: { xs: "flex", md: "flex" },
+                          fontFamily: "sans-serif",
+                          fontWeight: 700,
+                          fontSize: 25,
+                          color: "black",
+                          textDecoration: "none",
+                        }}
+                      &gt;
+                        Nuevo Producto
+                      &lt;/Typography&gt;
                 )}
 &nbsp;
                 {params.id ? (
@@ -1008,120 +1014,123 @@ export function NuevoProducto({ open, setOpen, handleOpen }) {
                   &lt;/Button&gt;
                 ) : (
                   &lt;Button
-                    variant="contained"
-                    style={{
-                      backgroundColor: "#00AB55",
-                      borderRadius: 7,
-                      textTransform: "initial",
-                    }}
-                    onClick={submitHandler}
-                  &gt;
-                    &lt;AddIcon sx={{ mr: 0.5 }} /&gt;
-                    Crear
-                  &lt;/Button&gt;
+                        variant="contained"
+                        style={{
+                          backgroundColor: "#00AB55",
+                          borderRadius: 7,
+                          textTransform: "initial",
+                        }}
+                        onClick={submitHandler}
+                      &gt;
+                        &lt;AddIcon sx={{ mr: 0.5 }} /&gt;
+                        Crear
+                      &lt;/Button&gt;
                 )}
+                  
               &lt;/Box&gt;
 &nbsp;
+  
               &lt;div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: 30,
-                }}
-              &gt;
-                &lt;TextField
-                  id="standard-search"
-                  label="Nombre del Producto"
-                  type="text"
-                  variant="standard"
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: 30,
+                  }}
+                &gt;
+                  &lt;TextField
+                    id="standard-search"
+                    label="Nombre del Producto"
+                    type="text"
+                    variant="standard"
                   //defaultValue={producto.name}
+                    //defaultValue={producto.name}
                   onChange={(e) =&gt;
-                    setProducto({ ...producto, name: e.target.value })
-                  }
-                  value={producto.name}
-                /&gt;
-                &lt;FormControl variant="standard"&gt;
-                  &lt;InputLabel htmlFor="standard-adornment-amount"&gt;
-                    Precio del Producto
-                  &lt;/InputLabel&gt;
-                  &lt;Input
-                    id="standard-adornment-amount"
-                    onChange={(e) =&gt;
-                      setProducto({ ...producto, price: e.target.value })
+                      setProducto({ ...producto, name: e.target.value })
                     }
-                    value={producto.price}
-                    startAdornment={
-                      &lt;InputAdornment position="start"&gt;$&lt;/InputAdornment&gt;
-                    }
+                    value={producto.name}
                   /&gt;
-                &lt;/FormControl&gt;
+                  &lt;FormControl variant="standard"&gt;
+                    &lt;InputLabel htmlFor="standard-adornment-amount"&gt;
+                      Precio del Producto
+                    &lt;/InputLabel&gt;
+                    &lt;Input
+                      id="standard-adornment-amount"
+                      onChange={(e) =&gt;
+                        setProducto({ ...producto, price: e.target.value })
+                      }
+                      value={producto.price}
+                      startAdornment={
+                        &lt;InputAdornment position="start"&gt;$&lt;/InputAdornment&gt;
+                      }
+                    /&gt;
+                  &lt;/FormControl&gt;
 &nbsp;
-                &lt;TextField
-                  
-                  label="Fabricante del Producto"
-                  type="text"
-                  onChange={(e) =&gt;
-                    setProducto({ ...producto, manufacturer: e.target.value })
-                  }
-                  value={producto.manufacturer}
-                  variant="standard"
-                /&gt;
-&nbsp;
-                &lt;TextField
-                  label="Descripción del Producto"
-                  type="text"
-                  onChange={(e) =&gt;
-                    setProducto({ ...producto, description: e.target.value })
-                  }
-                  value={producto.description}
-                  variant="standard"
-                /&gt;
-&nbsp;
-                &lt;FormControl variant="standard"&gt;
-                  &lt;InputLabel id="standard-weight-helper-text"&gt;
-                    Peso del Producto
-                  &lt;/InputLabel&gt;
-                  &lt;Input
-                    id="standard-adornment-weight"
+                  &lt;TextField
+                    
+                    label="Fabricante del Producto"
+                    type="text"
                     onChange={(e) =&gt;
-                      setProducto({ ...producto, weight: e.target.value })
+                      setProducto({ ...producto, manufacturer: e.target.value })
                     }
-                    value={producto.weight}
-                    endAdornment={
-                      &lt;InputAdornment position="end"&gt;Kg&lt;/InputAdornment&gt;
-                    }
-                    aria-describedby="standard-weight-helper-text"
-                    inputProps={{
-                      "aria-label": "weight",
-                    }}
+                    value={producto.manufacturer}
+                    variant="standard"
                   /&gt;
-                &lt;/FormControl&gt;
-                &lt;TextField
-                  
-                  label="Categoria del Producto"
-                  type="text"
-                  onChange={(e) =&gt;
-                    setProducto({ ...producto, category: e.target.value })
-                  }
-                  value={producto.category}
-                  variant="standard"
-                /&gt;
-                &lt;TextField
-                  
-                  label="Unidades del Producto"
-                  type="number"
-                  onChange={(e) =&gt;
-                    setProducto({ ...producto, numberUnits: e.target.value })
-                  }
-                  value={producto.numberUnits}
-                  variant="standard"
-                /&gt;
-              &lt;/div&gt;
-            &lt;/Card&gt;
-          &lt;/Box&gt;
-        &lt;/Fade&gt;
-      &lt;/Modal&gt;
-      &lt;Snackbar
+&nbsp;
+                  &lt;TextField
+                      label="Descripción del Producto"
+                    type="text"
+                    onChange={(e) =&gt;
+                      setProducto({ ...producto, description: e.target.value })
+                    }
+                    value={producto.description}
+                    variant="standard"
+                  /&gt;
+&nbsp;
+                  &lt;FormControl variant="standard"&gt;
+                    &lt;InputLabel id="standard-weight-helper-text"&gt;
+                      Peso del Producto
+                    &lt;/InputLabel&gt;
+                    &lt;Input
+                      id="standard-adornment-weight"
+                      onChange={(e) =&gt;
+                        setProducto({ ...producto, weight: e.target.value })
+                      }
+                      value={producto.weight}
+                      endAdornment={
+                        &lt;InputAdornment position="end"&gt;Kg&lt;/InputAdornment&gt;
+                      }
+                      aria-describedby="standard-weight-helper-text"
+                      inputProps={{
+                        "aria-label": "weight",
+                      }}
+                    /&gt;
+                  &lt;/FormControl&gt;
+                  &lt;TextField
+                    
+                    label="Categoria del Producto"
+                    type="text"
+                    onChange={(e) =&gt;
+                      setProducto({ ...producto, category: e.target.value })
+                    }
+                    value={producto.category}
+                    variant="standard"
+                  /&gt;
+                  &lt;TextField
+                    
+                    label="Unidades del Producto"
+                    type="number"
+                    onChange={(e) =&gt;
+                      setProducto({ ...producto, numberUnits: e.target.value })
+                    }
+                    value={producto.numberUnits}
+                    variant="standard"
+                  /&gt;
+                &lt;/div&gt;
+              &lt;/Card&gt;
+            &lt;/Box&gt;
+          &lt;/Fade&gt;
+        &lt;/Modal&gt;
+        &lt;Snackbar
         open={message.state}
         onClose={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setMessage({ ...message, state: false })}</span>
         message={message.message}
@@ -1219,7 +1228,7 @@ export default function Productos() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-16T21:48:21.974Z
+                at 2023-06-17T19:19:46.412Z
             </div>
         <script src="../prettify.js"></script>
         <script>

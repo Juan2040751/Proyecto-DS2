@@ -13,12 +13,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import AddIcon from "@mui/icons-material/Add";
 import Backdrop from "@mui/material/Backdrop";
 import axios from "axios";
-import { updateProduct, getProduct } from "./api/products.api";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getProduct, updateProduct } from "./api/products.api";
 
 export function NuevoProducto({ open, setOpen, handleOpen }) {
   const [producto, setProducto] = useState({

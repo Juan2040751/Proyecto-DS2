@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
   <file path="C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\tests\login.test.js">
-    <testCase name="Pruebas interfaz Login Titulo de la página presente" duration="51"/>
-    <testCase name="Pruebas interfaz Login Login hace la solicitud POST correctamente" duration="139"/>
+    <testCase name="Pruebas interfaz Login Titulo de la página presente" duration="53"/>
+    <testCase name="Pruebas interfaz Login Login hace la solicitud POST correctamente" duration="127"/>
   </file>
   <file path="C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\tests\navbar.test.js">
-    <testCase name="pruebas interfaz de navbar Titulo de la pagina presente" duration="75"/>
-    <testCase name="pruebas interfaz de navbar Boton Facturacion presente" duration="78"/>
-    <testCase name="pruebas interfaz de navbar Boton Facturacion presente" duration="26"/>
+    <testCase name="pruebas interfaz de navbar Titulo de la pagina presente" duration="80"/>
+    <testCase name="pruebas interfaz de navbar Boton Facturacion presente" duration="82"/>
+    <testCase name="pruebas interfaz de navbar Boton Facturacion presente" duration="32"/>
   </file>
   <file path="C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\tests\facturacion.test.js">
     <testCase name="pruebas interfaz de facturacion Titulo de la pagina presente" duration="231"/>
-    <testCase name="pruebas interfaz de facturacion Informacion del vendendor y cliente presente" duration="142"/>
-    <testCase name="pruebas interfaz de facturacion Boton para añadir productos funciona" duration="284"/>
-    <testCase name="pruebas interfaz de facturacion Crear factura hace la solicitud POST correctamente" duration="247"/>
-    <testCase name="pruebas interfaz de facturacion Añadir producto actualiza la lista de productos correctamente" duration="209"/>
+    <testCase name="pruebas interfaz de facturacion Informacion del vendendor y cliente presente" duration="131"/>
+    <testCase name="pruebas interfaz de facturacion Boton para añadir productos funciona" duration="280"/>
+    <testCase name="pruebas interfaz de facturacion Crear factura hace la solicitud POST correctamente" duration="229"/>
+    <testCase name="pruebas interfaz de facturacion Añadir producto actualiza la lista de productos correctamente" duration="206"/>
   </file>
   <file path="C:\Users\Juan Jose Viafara\OneDrive\Escritorio\I\UNIVERSIDAD JUAN JOSE\Semestre 6\Desarrollo Software 2\ProyectoDS2\frontend\tests\productos.test.js">
-    <testCase name="pruebas interfaz de productos Titulo de la pagina presente" duration="118"/>
-    <testCase name="pruebas interfaz de productos Boton para añadir productos presente" duration="103"/>
-    <testCase name="pruebas interfaz de productos Boton para añadir productos funciona" duration="140"/>
-    <testCase name="pruebas interfaz de productos Formulario para añadir productos presente" duration="116"/>
-    <testCase name="pruebas interfaz de productos Boton para añadir un producto funciona" duration="358"/>
-    <testCase name="pruebas interfaz de productos Se puede editar el fabricante de un producto" duration="181"/>
-    <testCase name="Pruebas interfaz listProducts Muestra correctamente la lista de productos" duration="123"/>
+    <testCase name="pruebas interfaz de productos Titulo de la pagina presente" duration="105"/>
+    <testCase name="pruebas interfaz de productos Boton para añadir productos presente" duration="89"/>
+    <testCase name="pruebas interfaz de productos Boton para añadir productos funciona" duration="142"/>
+    <testCase name="pruebas interfaz de productos Formulario para añadir productos presente" duration="83"/>
+    <testCase name="pruebas interfaz de productos Boton para añadir un producto funciona" duration="396"/>
+    <testCase name="pruebas interfaz de productos Se puede editar el fabricante de un producto" duration="955"/>
+    <testCase name="Pruebas interfaz listProducts Muestra correctamente la lista de productos" duration="97"/>
   </file>
 </testExecutions>
