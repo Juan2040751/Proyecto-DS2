@@ -12,25 +12,15 @@
 Software que permite realizar seguimiento al proceso de contabilidad de un comercio u organización, este aplicativo ofrece herramientas que permitan automatizar las tareas contables, tales como: gestión de ventas, seguimiento de facturas,  seguimiento de inventario e informes financieros.
 El software cuenta con una interfaz intuitiva y fácil de utilizar, la cuál permitirá al usuario (vendedor) realizar un trabajo con mayor rapidez y eficacia.
 
-# Pasos de ejecución 
-
-- Tener Docker Compose en la computadora.
-- Clonar el repositorio.
-- Abrirlo en el editor de código de preferencia.
-- Abrir una terminal en el directorio ***frontend*** y ejecutar el comando:
-`$ npm install ` para instalar dependencias.
-- Abrir nuevamente una terminal en la raiz del repositorio y ejecutar los siguientes comandos:
-`$ docker compose build`
-`$ docker compose up`
-
-o bien, el aplicativo se encuentra desplegado en el siguiente enlace:  https://proyecto-ds-2.vercel.app/
+# Despliegue
+El aplicativo se encuentra desplegado en el siguiente enlace:  https://proyecto-ds-2.vercel.app/
 
 # Desarrollo
 
 ## Pipeline
 En el siguiente diagrama se puede ver representado el proceso de implementación del código de nuestro aplicativo web. El proceso comienza con nosotros como desarrolladores comprometidos con el código, luego se muestra nuestro gestor de versiones y servidor de automatización. El código luego pasa por compilación, pruebas unitarias, pruebas y análisis de código, despliegue y servicio de almacenamiento. Tambien se puede apreciar que cada una de estas estapas está conectada a Microsoft Teams con el fin de que todo el equipo de trabajo sea notificado por este medio cuando se realice cualquier cambio u avance en el proyecto.
 
-![](https://i.ibb.co/6X0wgvf/CI-CD-pipeline-DS2.png)
+![](https://bit.ly/3Xkef5a)
 
 
 ## Construcción 
@@ -138,13 +128,10 @@ jobs:
 ```
 
 ### Jest
-Para las pruebas unitarias se hizo uso del framework Jest 
+Para las pruebas se hizo uso del framework Jest 
 
 ###  SonarCloud
 Utilizamos SonarCloud como herramienta de analisis estatico de código con la idea de mejorar el código buscando esos problemas de calidad, vulnerabilidades de seguridad y duplicaciones de código las cuales podían no presentar unas buenas practicas de programación, se integró con nuestro flujo de trabajo de integración continua (CI) y sistemas de control de versiones Git, es decir, que se configuró de manera que realizara analisis automáticos en cada confirmación de codigo.
 
 ### Vercel
-Se utilizó esta plataforma para lograr realizar el aloje y el despliegue solo del FRONTEND del aplicativo web, esta plataforma nos brindó la funcionalidad de conectar nuestro repositorio, en nuestro caso, GitHub y poder realizar despliegues continuos y automaticos cada vez que se realizara un ***push*** en nuestro repositorio.
-
-### Render
-Se utilizó también esta herramienta de aloje y despligue pero solo para la parte BACKEND, al igual que Vercel, esta se conecto con nuestro repositorio y se configuró de manera que los despliegues se realizaran automaticamente.
+Se utilizó esta plataforma para lograr realizar el aloje y el despliegue del aplicativo web, esta plataforma nos brindó la funcionalidad de conectar nuestro repositorio, en nuestro caso, GitHub y poder realizar despliegues continuos y automaticos cada vez que se realizara un ***push*** en nuestro repositorio.
